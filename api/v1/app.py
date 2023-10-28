@@ -19,7 +19,7 @@ def teardown(exception):
     """closes the current SQLAlchemy session"""
     storage.close()
 
-# Define an error handler for 404 Not Found errors
+# Define a JSON error handler for 404 Not Found errors
 @app.errorhandler(404)
 def page_not_found(error):
     """Handler for 404 Not found errors"""
