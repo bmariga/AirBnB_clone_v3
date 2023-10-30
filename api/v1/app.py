@@ -11,7 +11,7 @@ from flask_cors import CORS
 # Create a Flask application instance
 app = Flask(__name__)
 
-# CORS instance allowing: /* for 0.0.0.0
+# CORS instance allow access from all origins 0.0.0.0
 cors = CORS(app, resources={r"/api/*": {"origins": "0.0.0.0"}})
 
 # Register the blueprint app_views
