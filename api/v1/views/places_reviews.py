@@ -9,9 +9,10 @@ from models.review import Review
 from models.place import Place
 from models.user import User
 
+
 # Define a route to retrieve a list of all amenity objects
 @app_views.route('/places/<place_id>/reviews', methods=['GET'],
-                  strict_slashes=False)
+                 strict_slashes=False)
 def get_place_reviews(place_id):
     """retrieves review objects"""
     # Get all Amenity objects from storage
@@ -23,20 +24,25 @@ def get_place_reviews(place_id):
     for obj in place.reviews:
         reviews.append(obj.to_dict())
 
+    # return reviews
     return jsonify(reviews)
 
 
 @app_views.route('/reviews/<review_id>', methods=['DELETE'],
-                strict_slashes=False)
+                 strict_slashes=False)
 def delete_review(review_id):
     '''review deletion'''
     review = storage.get(Review, review_id)
     if review is None:
         abort(404)
+
+    # delete review
     storage.delete(review)
     storage.save()
-    
+
+    # return empty
     return jsonify({}), 200
+
 
 @app_views.route('/reviews/<review_id>', methods=['GET'],
                  strict_slashes=False)
@@ -46,7 +52,9 @@ def get_review_id(review_id):
     if review is None:
         abort(404)
 
+    # return dic of review
     return jsonify(review.to_dict()), 200
+
 
 @app_views.route('/places/<place_id>/reviews', methods=['POST'],
                  strict_slashes=False)
