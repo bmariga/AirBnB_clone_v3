@@ -13,6 +13,7 @@ def status_check():
     # Return a JSON response with the status "OK"
     return jsonify({"status": "OK"})
 
+
 # Route for the '/stats' endpoint
 @app_views.route('/stats', methods=['GET'])
 def object_stats():
@@ -28,6 +29,6 @@ def object_stats():
         "users": storage.count('User'),
     }
     
-    # Return a JSON response with the counts for amenities, cities, places, reviews, states, and users
+    # Return a JSON response with the counts for each object type
     return jsonify(objects)
 
